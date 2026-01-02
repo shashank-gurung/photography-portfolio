@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shashank Gurung | Visual Artist</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #050505;
+            --accent: #ffffff;
+            --text-dim: #888888;
+            --glass: rgba(10, 10, 10, 0.8);
+            --transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: radial-gradient(circle at center, #111111 0%, #050505 100%);
+            background-attachment: fixed;
+            color: var(--accent);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        
+        header {
+            padding: 1.2rem 5%;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .logo:hover {
+            letter-spacing: 7px;
+            color: var(--accent);
+            text-shadow: 0 0 10px rgba(255,255,255,0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 8px 18px;
+            border-radius: 30px;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover {
+            color: black;
+            background: white;
+            transform: scale(1.05);
+        }
+
+        
+        .hero {
+            padding: 200px 5% 60px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 10vw, 5rem);
+            font-weight: 400;
+            margin-bottom: 20px;
+            transition: var(--transition);
+            cursor: default;
+        }
+
+        .hero h1:hover {
+            letter-spacing: 3px;
+            transform: scale(1.01);
+        }
+
+        .hero h1 span.word {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: textReveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        .hero h1 span.word:nth-child(1) { animation-delay: 0.1s; }
+        .hero h1 span.word:nth-child(2) { animation-delay: 0.3s; }
+        .hero h1 span.word:nth-child(3) { animation-delay: 0.5s; }
+        .hero h1 span.word:nth-child(4) { animation-delay: 0.7s; }
+
+        .italic { 
+            font-style: italic; 
+            color: var(--text-dim); 
+            transition: var(--transition);
+        }
+
+        .hero h1:hover .italic {
+            color: var(--accent);
+        }
+
+        .hero p {
+            color: var(--text-dim);
+            letter-spacing: 6px;
+            font-weight: 200;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeIn 2s ease forwards;
+            animation-delay: 1.2s;
+            transition: var(--transition);
+            cursor: default;
+        }
+
+        .hero p:hover {
+            letter-spacing: 10px;
+            color: white;
+        }
+
+        @keyframes textReveal { to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { to { opacity: 1; } }
+
+        
+        .featured-carousel {
+            width: 100%;
+            overflow: hidden;
+            padding: 40px 0;
+            white-space: nowrap;
+        }
+
+        .carousel-track {
+            display: inline-flex;
+            gap: 25px;
+            animation: scroll-endless 45s linear infinite;
+        }
+
+        .carousel-card {
+            width: 350px;
+            height: 480px;
+            border-radius: 4px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .carousel-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) contrast(1.1);
+            transition: 0.8s ease;
+        }
+
+        @keyframes scroll-endless {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        
+        .about-section {
+            max-width: 800px;
+            margin: 60px auto 100px;
+            padding: 0 10%;
+            text-align: center;
+        }
+
+        .about-text p {
+            font-size: clamp(1rem, 2vw, 1.1rem);
+            font-weight: 200;
+            color: var(--text-dim);
+            transition: var(--transition);
+            margin-bottom: 15px;
+            cursor: default;
+        }
+
+        .about-text p:hover {
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        
+        .favorite-section {
+            padding: 100px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 0.8rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 50px;
+            color: var(--text-dim);
+            transition: var(--transition);
+            cursor: default;
+        }
+
+        .section-title:hover {
+            letter-spacing: 10px;
+            color: white;
+        }
+
+        .fav-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            background: rgba(255,255,255,0.02);
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 4px;
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+
+        .fav-card:hover {
+            background: rgba(255,255,255,0.04);
+            border-color: rgba(255,255,255,0.15);
+        }
+
+        .fav-image-wrap {
+            width: 100%;
+            overflow: hidden;
+            border-radius: 2px;
+        }
+
+        .fav-image-wrap img {
+            width: 100%;
+            display: block;
+            filter: grayscale(100%);
+            transition: 1s ease;
+        }
+
+        .fav-card:hover img {
+            filter: grayscale(0%);
+            transform: scale(1.03);
+        }
+
+        .fav-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+            transition: var(--transition);
+            cursor: default;
+        }
+
+        .fav-content h2:hover {
+            letter-spacing: 2px;
+            color: var(--accent);
+        }
+
+        .fav-content p {
+            font-size: 1rem;
+            color: var(--text-dim);
+            margin-bottom: 20px;
+            line-height: 1.8;
+            font-weight: 300;
+            transition: var(--transition);
+            cursor: default;
+        }
+
+        .fav-content p:hover {
+            color: white;
+        }
+
+        .deep-meaning {
+            border-left: 2px solid rgba(255,255,255,0.2);
+            padding-left: 20px;
+            font-style: italic;
+            margin-top: 30px;
+            transition: var(--transition);
+            cursor: default;
+        }
+
+        .deep-meaning:hover {
+            border-left: 2px solid white;
+            padding-left: 30px;
+            background: rgba(255,255,255,0.03);
+        }
+
+        
+        #backToTop {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            width: 50px;
+            height: 50px;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+
+        #backToTop.show { opacity: 1; visibility: visible; }
+        #backToTop:hover { background: white; color: black; transform: translateY(-5px); }
+
+        footer {
+            text-align: center;
+            padding: 8rem 5% 4rem;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            transition: var(--transition);
+        }
+
+        footer:hover {
+            color: white;
+            letter-spacing: 6px;
+        }
+
+        
+        @media (max-width: 900px) {
+            header { padding: 1rem 5%; }
+            nav { justify-content: space-between; gap: 10px; }
+            .logo { font-size: 0.7rem; letter-spacing: 3px; }
+            .nav-links a { font-size: 0.55rem; padding: 6px 14px; }
+            .fav-card { grid-template-columns: 1fr; gap: 30px; padding: 25px; }
+            .fav-content h2 { font-size: 1.8rem; }
+            .hero { padding-top: 150px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <div class="logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Shashank Gurung</div>
+        <div class="nav-links">
+            <a href="https://www.instagram.com/shashank0__0" target="_blank">FOLLOW ME</a>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <section class="hero">
+        <h1>
+            <span class="word">The</span> 
+            <span class="word italic">Art</span> 
+            <span class="word">of</span> 
+            <span class="word">Moment.</span>
+        </h1>
+        <p>BLACK & WHITE CHRONICLES</p>
+    </section>
+
+    <section class="featured-carousel">
+        <div class="carousel-track" id="carouselTrack">
+            <div class="carousel-card"><img src="Image/Girl.jpg"></div>
+            <div class="carousel-card"><img src="Image/Light.jpg"></div>
+            <div class="carousel-card"><img src="Image/Swing.jpg"></div>
+            <div class="carousel-card"><img src="Image/Cycle.jpg"></div>
+            <div class="carousel-card"><img src="Image/The broken wall.jpg"></div>
+            <div class="carousel-card"><img src="Image/The lovers.jpg"></div>
+            <div class="carousel-card"><img src="Image/bird on cow.jpg"></div>
+            <div class="carousel-card"><img src="Image/BIRD AND THE LEG.jpg"></div>
+            <div class="carousel-card"><img src="Image/Bird on the tree.jpg"></div>
+            <div class="carousel-card"><img src="Image/Top.jpg"></div>
+            <div class="carousel-card"><img src="Image/Top 2.jpg"></div>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <div class="about-text">
+            <p>I’m Shashank Gurung, a B.Tech student with a strong interest in photography and visual storytelling.</p>
+            <p>Alongside my studies, I spend time capturing everyday moments, people, and spaces that feel natural and unforced.</p>
+        </div>
+    </section>
+
+    <section class="favorite-section">
+        <div class="section-title">A Closer Look</div>
+        
+        <div class="fav-card">
+            <div class="fav-image-wrap">
+                <img src="Image/Girl.jpg" alt="Favorite Photo">
+            </div>
+            <div class="fav-content">
+                <h2>The Silent Gaze</h2>
+                <p>This is my favorite photograph because it captures a rare moment of absolute raw curiosity. I took this while observing how a child interacts with a world that seems massive and complex to them.</p>
+                <div class="deep-meaning">
+                    <p>"There is something deep in the way she looks back—it's not just a photo of a child; it's a reminder of the innocence we lose as we grow up. The scratches on the car and the rough textures represent the world's chaos, while her expression remains the only calm element."</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="fav-card">
+            <div class="fav-image-wrap">
+                <img src="Image/The broken wall.jpg" alt="The Broken Wall">
+            </div>
+            <div class="fav-content">
+                <h2>The Broken Wall</h2>
+                <p>This image came from noticing a structure slowly giving in to time, shaped by cracks, rough edges, and layers worn down by years of exposure.</p>
+                <div class="deep-meaning">
+                    <p>"What stays with me is the contrast between what remains and what has already disappeared. The solid surface still tries to hold its form, while the dark opening interrupts it completely, turning emptiness into the most expressive part of the frame."</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="fav-card">
+            <div class="fav-image-wrap">
+                <img src="Image/Swing.jpg" alt="The Empty Swing">
+            </div>
+            <div class="fav-content">
+                <h2>The Empty Swing</h2>
+                <p>This photograph came from noticing a playground without movement, where something meant for joy was left completely still.</p>
+                <div class="deep-meaning">
+                    <p>"What drew me in was the sense of pause it created. The absence of people makes the space feel heavier, turning a familiar object into a quiet reminder of moments that have passed."</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="fav-card">
+            <div class="fav-image-wrap">
+                <img src="Image/The lovers.jpg" alt="The Quiet Distance">
+            </div>
+            <div class="fav-content">
+                <h2>The Quiet Distance</h2>
+                <p>This photograph came from noticing a moment that wasn’t meant to be seen as a subject. Two people sit close, yet their presence feels partially hidden.</p>
+                <div class="deep-meaning">
+                    <p>"What stays with me is the balance between closeness and distance. The frame suggests how relationships often exist in small, unnoticed moments rather than obvious gestures."</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="fav-card">
+            <div class="fav-image-wrap">
+                <img src="Image/Cycle.jpg" alt="The Waiting Cycle">
+            </div>
+            <div class="fav-content">
+                <h2>The Waiting Cycle</h2>
+                <p>This photograph came from noticing a moment where everything felt paused. A bicycle rests among empty chairs, surrounded by objects that suggest activity.</p>
+                <div class="deep-meaning">
+                    <p>"What stays with me is the stillness it holds. The cycle feels ready to move, but remains grounded—a quiet reminder of routines and the unnoticed gaps between arrival and departure."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<button id="backToTop" title="Back to Top">&#8593;</button>
+
+<footer>
+    <p>&copy; Shashank Gurung &bull; Visual Storyteller</p>
+</footer>
+
+<script>
+    
+    const track = document.getElementById('carouselTrack');
+    const originalContent = track.innerHTML;
+    track.innerHTML = originalContent + originalContent;
+
+    
+    const bttButton = document.getElementById('backToTop');
+    window.onscroll = function() {
+        if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+            bttButton.classList.add('show');
+        } else {
+            bttButton.classList.remove('show');
+        }
+    };
+    bttButton.onclick = function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+</script>
+
+</body>
+</html>
